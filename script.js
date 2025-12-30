@@ -1,4 +1,25 @@
+/* ===== LANGUAGE DATA ===== */
 const translations = {
+  nav_home: {
+    en: "Home",
+    hi: "होम",
+    hinglish: "Home"
+  },
+  nav_notes: {
+    en: "Notes",
+    hi: "नोट्स",
+    hinglish: "Notes"
+  },
+  nav_ai: {
+    en: "AI Tools",
+    hi: "एआई टूल्स",
+    hinglish: "AI Tools"
+  },
+  nav_about: {
+    en: "About",
+    hi: "परिचय",
+    hinglish: "About"
+  },
   hero_title: {
     en: "Learn Smarter with Free Notes and AI Tools",
     hi: "मुफ़्त नोट्स और AI टूल्स के साथ स्मार्ट तरीके से सीखें",
@@ -11,13 +32,18 @@ const translations = {
   }
 };
 
+/* ===== LANGUAGE SWITCH ===== */
 const langSelect = document.querySelector(".lang-select");
 
-langSelect.addEventListener("change", () => {
-  const lang = langSelect.value.toLowerCase();
+if (langSelect) {
+  langSelect.addEventListener("change", () => {
+    const lang = langSelect.value.toLowerCase();
 
-  document.querySelectorAll("[data-key]").forEach(el => {
-    const key = el.getAttribute("data-key");
-    el.innerText = translations[key][lang];
+    document.querySelectorAll("[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      if (translations[key] && translations[key][lang]) {
+        el.innerText = translations[key][lang];
+      }
+    });
   });
-});
+}
