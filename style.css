@@ -364,3 +364,9 @@ footer {
 #searchResults li:hover {
   background: #f5f5f5;
 }
+.side-menu {
+  z-index: 9999;
+}
+.topbar {
+  z-index: 10000;
+}
