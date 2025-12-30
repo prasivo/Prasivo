@@ -1,6 +1,6 @@
 // MENU BUTTON
 document.querySelector(".nav-btn").addEventListener("click", () => {
-  alert("Menu coming soon: Notes, AI Tools, Founder, Contact");
+  window.location.href = "notes.html";
 });
 
 // SEARCH FUNCTION
