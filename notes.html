@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes | Prasivo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="header-left">
+    <a href="index.html" class="nav-link">Home</a>
+  </div>
+
+  <div class="header-center">
+    <div class="logo">PRASIVO</div>
+  </div>
+
+  <div class="header-right">
+    <a href="notes.html" class="nav-link">Notes</a>
+  </div>
+</header>
+
+<section class="search-section">
+  <input id="searchBox" type="text" placeholder="Search notes...">
+</section>
+
+<main>
+  <h1>Notes</h1>
+
+  <ul id="notesList">
+    <li>Respiratory System</li>
+    <li>Cardiovascular System</li>
+    <li>Digestive System</li>
+    <li>Nervous System</li>
+    <li>Pharmacology Basics</li>
+  </ul>
+</main>
+
+<footer>
+  © 2025 Prasivo · Independent Learning Platform
+</footer>
+
+<script>
+  const searchBox = document.getElementById("searchBox");
+  const notes = document.querySelectorAll("#notesList li");
+
+  searchBox.addEventListener("keyup", function () {
+    const value = searchBox.value.toLowerCase();
+    notes.forEach(note => {
+      note.style.display = note.textContent.toLowerCase().includes(value)
+        ? "block"
+        : "none";
+    });
+  });
+</script>
+
+</body>
+</html>
