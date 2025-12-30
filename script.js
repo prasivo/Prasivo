@@ -50,23 +50,33 @@ if (langSelect) {
 function toggleMenu() {
   document.getElementById("sideMenu").classList.toggle("active");
   }
-#searchResults {
-  list-style: none;
-  margin-top: 10px;
-  padding: 0;
-  max-width: 500px;
-}
+// ===== HOME SEARCH (SEARCH NOTES FROM HOME) =====
+const homeSearch = document.getElementById("homeSearch");
+const searchResults = document.getElementById("searchResults");
 
-#searchResults li {
-  padding: 10px;
-  border-bottom: 1px solid #e5e5e5;
-}
+const subjects = [
+  { name: "Human Anatomy and Physiology", url: "anatomy.html", keys: "anatomy physiology human body" },
+  { name: "Pharmaceutics", url: "pharmaceutics.html", keys: "pharmaceutics dosage formulation" },
+  { name: "Pharmaceutical Inorganic Chemistry", url: "inorganic-chemistry.html", keys: "inorganic chemistry pharmaceutical" },
+  { name: "Pharmaceutical Analysis", url: "pharmaceutical-analysis.html", keys: "analysis pharmaceutical" },
+  { name: "Remedial Mathematics", url: "remedial-mathematics.html", keys: "math mathematics remedial" },
+  { name: "Skill Development", url: "skill-development.html", keys: "skill development communication" }
+];
 
-#searchResults li a {
-  text-decoration: none;
-  color: #111;
-}
+if (homeSearch && searchResults) {
+  homeSearch.addEventListener("input", () => {
+    const q = homeSearch.value.toLowerCase().trim();
+    searchResults.innerHTML = "";
 
-#searchResults li:hover {
-  background: #f5f5f5;
-}
+    if (!q) return;
+
+    subjects.forEach(sub => {
+      const hay = (sub.name + " " + sub.keys).toLowerCase();
+      if (hay.includes(q)) {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="${sub.url}">${sub.name}</a>`;
+        searchResults.appendChild(li);
+      }
+    });
+  });
+  }
