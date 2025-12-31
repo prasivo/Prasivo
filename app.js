@@ -39,14 +39,25 @@ window.toggleAI = function(show) {
 
 window.askAI = function() {
     const input = document.getElementById('ai-input');
-    const chat = document.getElementById('ai-chat-area');
+    const chat = document.getElementById('aiChat'); // Yahan ID sahi kar di hai
     const q = input.value.trim();
+    
     if(!q) return;
 
+    // Aapka message dikhayega
     chat.innerHTML += `<div style="text-align:right; margin:15px 0; color:var(--accent);"><b>You:</b> ${q}</div>`;
     input.value = "";
 
+    // Sochne wala animation
+    const loadingId = "load-" + Date.now();
+    chat.innerHTML += `<div id="${loadingId}" style="font-size:0.8rem; opacity:0.5;">Prasivo AI soch raha hai...</div>`;
+    chat.scrollTop = chat.scrollHeight;
+
     setTimeout(() => {
+        // Loading hatayega aur reply dega
+        const loadingEl = document.getElementById(loadingId);
+        if(loadingEl) loadingEl.remove();
+
         let reply = getSmartReply(q.toLowerCase());
         chat.innerHTML += `<div style="background:rgba(255,255,255,0.05); padding:12px; border-radius:12px; margin-bottom:15px; border-left:3px solid var(--primary);">
             <b>AI:</b> ${reply}
@@ -54,6 +65,7 @@ window.askAI = function() {
         chat.scrollTop = chat.scrollHeight;
     }, 600);
 };
+
 
 function getSmartReply(q) {
     if(q.includes("hi") || q.includes("hello")) return "Hi bhai! Prasoon Gupta ke platform par aapka swagat hai. Main Gemini se search karke aapko Pharmacy ka koi bhi topic samjha sakta hoon. Kya janna chahte ho?";
