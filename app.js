@@ -1,64 +1,21 @@
 // --- PRASIVO MASTER BRAIN (app.js) ---
 
-// 1. REAL AI LOGIC (Simulated for Browser)
-async function askAI() {
-    const input = document.getElementById('aiInput');
-    const chat = document.getElementById('aiChat');
-    const query = input.value.trim();
-
-    if(!query) return;
-
-    // User Message
-    chat.innerHTML += `<div style="text-align:right; margin: 10px 0; color:white;"><b style="color:var(--accent)">You:</b> ${query}</div>`;
-    input.value = "";
-
-    // Typing Indicator
-    const typingId = "typing-" + Date.now();
-    chat.innerHTML += `<div id="${typingId}" style="color:#94a3b8; font-style:italic; margin-bottom:15px;">PRASIVO AI soch raha hai...</div>`;
-    chat.scrollTop = chat.scrollHeight;
-
-    try {
-        // Yahan hum browser ki AI capability ya API use karenge
-        // Filhal main ek "Smart Response Engine" de raha hoon jo student-friendly hai
-        let response = await getSmartResponse(query);
-        
-        document.getElementById(typingId).remove();
-        chat.innerHTML += `<div style="color:var(--text); margin-bottom:20px; padding:12px; background:rgba(255,255,255,0.05); border-radius:15px; border-left:4px solid var(--primary);">
-            <b style="color:var(--accent)">AI:</b> ${response}
-        </div>`;
-    } catch (error) {
-        document.getElementById(typingId).innerText = "Bhai, network check karo, kuch issue lag raha hai.";
-    }
-    chat.scrollTop = chat.scrollHeight;
-}
-
-// 2. STUDENT-FRIENDLY RESPONSE ENGINE
-async function getSmartResponse(q) {
-    const query = q.toLowerCase();
-    
-    // Logic: Agar student specific topics poochta hai toh Hinglish mein deep answer
-    if(query.includes("cell")) {
-        return "Bhai, Cell hamari body ki sabse chhoti functional unit hai. Iska kaam energy banana (Mitochondria), protein banana (Ribosomes) aur body ko structure dena hai. Ye ek factory ki tarah kaam karta hai jahan Nucleus uska 'Manager' hota hai.";
-    }
-    if(query.includes("anatomy")) {
-        return "Anatomy ka matlab hai body parts ka structure dekhna. Jaise ki dil (heart) kahan hai, usme kitne chambers hain, ye sab Anatomy mein aata hai.";
-    }
-    if(query.includes("work")) {
-        return "Kisi bhi organ ke kaam karne ke tarike ko 'Physiology' kehte hain. Jaise Cell energy kaise banata hai ya heart blood pump kaise karta hai.";
-    }
-    
-    // Default search-like response
-    return `Aapne ${q} ke baare mein poochha hai. Pharmacy ke hisab se ye ek important topic hai. Main ise jaldi hi detailed Hinglish notes mein add kar dunga!`;
-}
-
-// 3. NAVIGATION & OUTSIDE TOUCH
+// 1. NAVIGATION ENGINE (Buttons & Pages)
 function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    console.log("Navigating to:", pageId); // Debugging ke liye
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    
+    const targetPage = document.getElementById(pageId);
+    if(targetPage) {
+        targetPage.classList.add('active');
+    }
+    
     closeSidebar();
     window.scrollTo(0,0);
 }
 
+// 2. SIDEBAR & OUTSIDE TOUCH LOGIC
 function toggleSidebar() {
     const sb = document.getElementById('sidebar');
     const ol = document.getElementById('overlay');
@@ -77,10 +34,47 @@ function closeSidebar() {
     if(ol) ol.style.display = 'none';
 }
 
-// MAGIC: Outside touch par sidebar band karne ke liye
+// Outside touch par menu band karne ke liye
 window.onclick = function(event) {
     const overlay = document.getElementById('overlay');
     if (event.target == overlay) {
         closeSidebar();
     }
 };
+
+// 3. SMART AI ENGINE
+async function askAI() {
+    const input = document.getElementById('aiInput');
+    const chat = document.getElementById('aiChat');
+    const query = input.value.trim();
+
+    if(!query) return;
+
+    // Student ka message
+    chat.innerHTML += `<div style="text-align:right; margin: 10px 0; color:white;"><b style="color:var(--accent)">You:</b> ${query}</div>`;
+    input.value = "";
+
+    // Typing effect
+    const typingId = "typing-" + Date.now();
+    chat.innerHTML += `<div id="${typingId}" style="color:#94a3b8; font-style:italic; margin-bottom:15px;">PRASIVO AI soch raha hai...</div>`;
+    chat.scrollTop = chat.scrollHeight;
+
+    // AI Response (Hinglish Logic)
+    setTimeout(() => {
+        let response = getHinglishResponse(query.toLowerCase());
+        const typingElem = document.getElementById(typingId);
+        if(typingElem) typingElem.remove();
+        
+        chat.innerHTML += `<div style="color:var(--text); margin-bottom:20px; padding:12px; background:rgba(255,255,255,0.05); border-radius:15px; border-left:4px solid var(--primary);">
+            <b style="color:var(--accent)">AI:</b> ${response}
+        </div>`;
+        chat.scrollTop = chat.scrollHeight;
+    }, 800);
+}
+
+function getHinglishResponse(q) {
+    if(q.includes("cell")) return "Bhai, Cell hamari body ki sabse chhoti functional unit hai. Ye factory ki tarah kaam karti hai jisme Nucleus 'Manager' hota hai.";
+    if(q.includes("anatomy")) return "Anatomy matlab body ka structure. Kaunsa organ kahan hai aur kaisa dikhta hai, ye Anatomy batati hai.";
+    if(q.includes("work") || q.includes("kaise")) return "Pharmacy mein 'kaam karne' ko Physiology kehte hain. Jaise heart blood pump kaise karta hai.";
+    return `Aapne "${q}" ke baare mein pucha hai. Ye Pharmacy ka important topic hai. Main ise jaldi detailed notes mein add karunga!`;
+}
