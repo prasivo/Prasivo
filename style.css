@@ -376,3 +376,66 @@ footer {
   margin-bottom: 15px;
   border-radius: 8px;
 }
+/* HEADER */
+.top-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 16px;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+  position:sticky;
+  top:0;
+  z-index:1001;
+}
+
+.logo{
+  font-weight:700;
+  font-size:20px;
+}
+
+.menu-btn{
+  font-size:22px;
+  cursor:pointer;
+}
+
+.language{
+  padding:6px;
+}
+
+/* SIDE MENU */
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:250px;
+  height:100%;
+  background:#fff;
+  box-shadow:2px 0 10px rgba(0,0,0,.2);
+  padding-top:60px;
+  transition:.3s;
+  z-index:1000;
+}
+
+.side-menu.open{
+  left:0;
+}
+
+.side-menu a{
+  display:block;
+  padding:15px;
+  text-decoration:none;
+  color:#000;
+  border-bottom:1px solid #eee;
+}
+
+/* SUBJECT LIST */
+.subjects a{
+  display:block;
+  padding:15px;
+  margin:10px;
+  background:#f5f5f5;
+  border-radius:8px;
+  text-decoration:none;
+  color:#000;
+}
