@@ -370,3 +370,9 @@ footer {
 .topbar {
   z-index: 10000;
 }
+.subject-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
