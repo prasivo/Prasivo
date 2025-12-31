@@ -25,6 +25,8 @@
         "Cardiovascular System"
       ]
     },
+
+    
     {
       "code": "BP102T",
       "name": "Pharmaceutics – I",
@@ -37,6 +39,8 @@
         "Packaging of Pharmaceutical Products"
       ]
     },
+
+    
     {
       "code": "BP103T",
       "name": "Pharmaceutical Analysis – I",
@@ -49,6 +53,8 @@
         "Precipitation Titrations"
       ]
     },
+
+    
     {
       "code": "BP104T",
       "name": "Pharmaceutical Inorganic Chemistry – I",
@@ -61,6 +67,8 @@
         "Gastrointestinal Agents"
       ]
     },
+
+    
     {
       "code": "BP105T",
       "name": "Communication Skills",
