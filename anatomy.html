@@ -2,94 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Human Anatomy & Physiology – I | Prasivo</title>
+  <title>Human Anatomy & Physiology | Prasivo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f6f7fb;
+      color: #222;
+    }
+
+    /* HEADER */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 14px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    #menuBtn {
+      position: absolute;
+      left: 15px;
+      font-size: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    /* MAIN CONTENT */
+    .content {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 15px;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .info {
+      background: #eef2ff;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .intro {
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .units {
+      margin-top: 25px;
+    }
+
+    .units h3 {
+      margin-bottom: 10px;
+    }
+
+    .units ul {
+      padding-left: 18px;
+    }
+
+    .units li {
+      margin-bottom: 10px;
+    }
+
+    .units a {
+      text-decoration: none;
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+
+    .units a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 
 <body>
-  
-<a href="notes.html">← Back to Notes</a>
 
-<h1>Human Anatomy & Physiology</h1>
-
-<p>Content will be added as per PCI syllabus.</p>
-
-</body>
-</html>
-
-<!-- COMMON HEADER -->
-<header class="topbar">
-  <div class="menu-icon" id="menuBtn">&#9776;</div>
-  <div class="logo-center">PRASIVO</div>
+<header class="site-header">
+  <button id="menuBtn">☰</button>
+  <h1>PRASIVO</h1>
 </header>
 
-<nav id="sideMenu" class="side-menu">
-  <a href="index.html">Home</a>
-  <a href="notes.html">Notes</a>
-  <a href="#">AI Tools</a>
-</nav>
+<main class="content">
 
-<main class="container">
+  <a href="notes.html" class="back-link">← Back to Notes</a>
 
-  <!-- SUBJECT IDENTITY -->
-  <h1>Human Anatomy & Physiology – I</h1>
-  <p><strong>Course:</strong> B.Pharmacy – Semester I</p>
-  <p><strong>PCI Code:</strong> BP101T</p>
+  <div class="card">
 
-  <hr>
+    <h2>Human Anatomy & Physiology – I</h2>
 
-  <!-- SHORT INTRO (OVERVIEW ONLY) -->
-  <section>
-    <p>
-      This subject deals with the basic structure and normal functions of the
-      human body. It forms the foundation for understanding diseases and
-      pharmacological action of drugs. Select a unit below to start studying.
+    <div class="info">
+      <p><strong>Course:</strong> B.Pharmacy – Semester I</p>
+      <p><strong>PCI Code:</strong> BP101T</p>
+    </div>
+
+    <p class="intro">
+      Human Anatomy & Physiology ek **foundation subject** hai jo har pharmacy
+      student ke liye bahut important hota hai.  
+      Is subject me hum **human body ke structure (anatomy)** aur
+      **body ka normal kaam karne ka tareeka (physiology)** detail me samajhte hain.
+      <br><br>
+      Simple words me bole to:  
+      👉 **Body dikhti kaisi hai** – ye anatomy batata hai  
+      👉 **Body kaam kaise karti hai** – ye physiology batata hai  
+      <br><br>
+      Is subject ka main goal ye hai ki student ko ye clear ho jaye ki
+      **healthy body ka system kaise work karta hai**, taaki future me
+      jab disease, medicines aur drugs padhein,
+      to unhe easily relate kar sake.
+      <br><br>
+      GPAT, CUET-PG aur semester exams ke liye ye subject **high-weightage**
+      wala hota hai. Agar ye strong ho gaya,
+      to pharmacology aur pathology jaise subjects automatically easy ho jaate hain.
     </p>
-  </section>
 
-  <hr>
+    <div class="units">
+      <h3>📘 Units – Click to Study</h3>
+      <ul>
+        <li><a href="#">Unit I – Introduction to Human Body</a></li>
+        <li><a href="#">Unit II – Structural Organization & Tissues</a></li>
+        <li><a href="#">Unit III – Skeletal System</a></li>
+        <li><a href="#">Unit IV – Blood and Lymph</a></li>
+        <li><a href="#">Unit V – Cardiovascular System</a></li>
+      </ul>
+    </div>
 
-  <!-- UNITS LIST (CLICKABLE) -->
-  <section>
-    <h2>📘 Units – Click to Study</h2>
-
-    <ul class="unit-list">
-      <li>
-        <a href="anatomy-unit-1.html">
-          Unit I – Introduction to Human Body
-        </a>
-      </li>
-
-      <li>
-        <a href="anatomy-unit-2.html">
-          Unit II – Structural Organization & Tissues
-        </a>
-      </li>
-
-      <li>
-        <a href="anatomy-unit-3.html">
-          Unit III – Skeletal System
-        </a>
-      </li>
-
-      <li>
-        <a href="anatomy-unit-4.html">
-          Unit IV – Blood and Lymph
-        </a>
-      </li>
-
-      <li>
-        <a href="anatomy-unit-5.html">
-          Unit V – Cardiovascular System
-        </a>
-      </li>
-    </ul>
-  </section>
+  </div>
 
 </main>
 
-<!-- COMMON SCRIPT -->
-<script src="script.js"></script>
 </body>
-</html>
+                                                             </html>
