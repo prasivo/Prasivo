@@ -49,11 +49,32 @@
         /* FLOATING AI BUTTON */
         .ai-fab { position:fixed; bottom:25px; right:25px; width:60px; height:60px; background:var(--primary); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; box-shadow:0 8px 25px rgba(99,102,241,0.5); z-index:1000; }
 
-        /* AI FULLSCREEN MODAL */
-        #ai-modal { position:fixed; inset:0; background:rgba(11,15,26,0.98); z-index:5000; display:none; flex-direction:column; }
-        #ai-chat-area { flex:1; overflow-y:auto; padding:20px; padding-top:70px; }
-        .ai-input-wrap { padding:15px; background:#161b22; display:flex; gap:10px; border-top:1px solid #334155; }
-        .ai-input-wrap input { flex:1; background:#0b0f1a; border:1px solid #334155; padding:12px; color:white; border-radius:10px; outline:none; }
+        /* AI HALF SCREEN (Bottom Sheet Style) */
+#ai-modal { 
+    position: fixed; 
+    inset: 0; 
+    background: rgba(0,0,0,0.6); /* Peeche ka background halka dhundhla */
+    z-index: 5000; 
+    display: none; 
+    align-items: flex-end; /* Modal ko screen ke neeche chipka dega */
+}
+
+.ai-window { 
+    background: #161b22; 
+    width: 100%; 
+    height: 65vh; /* Screen ka 65% hissa lega */
+    border-radius: 25px 25px 0 0; /* Sirf upar ke kone round honge */
+    display: flex; 
+    flex-direction: column; 
+    border-top: 2px solid var(--primary);
+    animation: slideUp 0.3s ease-out; /* Smoothly neeche se upar aayega */
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+            }
+        
 
         footer { text-align:center; padding:40px 20px; border-top:1px solid #1e293b; margin-top:40px; }
     </style>
