@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRASIVO | Pharmacy System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root { --primary: #6366f1; --accent: #22d3ee; --bg: #0b0f1a; --card: #161b22; --text: #f1f5f9; --red: #ef4444; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans',sans-serif; }
+        body { background:var(--bg); color:var(--text); transition: 0.3s; }
+        
+        /* Nav & Sidebar */
+        nav { position:fixed; top:0; width:100%; height:70px; background:rgba(11,15,26,0.9); backdrop-filter:blur(15px); display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:2000; border-bottom:1px solid #1e293b; }
+        #sidebar { position:fixed; top:0; left:-300px; width:300px; height:100%; background:#0f172a; z-index:4000; transition:0.4s; padding-top:80px; }
+        #sidebar.active { left:0; }
+        .sidebar-link { display:flex; align-items:center; padding:15px 25px; color:#94a3b8; text-decoration:none; font-weight:600; border-bottom:1px solid #1e293b; }
+        .exam-btn { color:var(--red) !important; font-weight:800; border:1px solid var(--red); margin:10px 20px; border-radius:10px; text-align:center; display:block; padding:10px; }
 
+        /* Pages */
+        .page { display:none; padding:90px 20px 40px; min-height:100vh; }
+        .page.active { display:block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+        /* Layered UI */
+        .tab-bar { display:flex; gap:10px; margin-bottom:20px; }
+        .tab { flex:1; padding:12px; background:var(--card); border-radius:10px; text-align:center; font-weight:700; cursor:pointer; font-size:0.8rem; border:1px solid #334155; }
+        .tab.active { background:var(--primary); border-color:var(--primary); }
+        .layer-badge { display:inline-block; padding:4px 12px; border-radius:50px; background:var(--red); font-size:0.7rem; font-weight:800; margin-bottom:15px; }
+
+        /* Exam Mode UI */
+        body.exam-mode { background:#1a0505; }
+        .exam-section { background:rgba(239,68,68,0.1); border:1px solid var(--red); border-radius:15px; padding:20px; margin-top:20px; }
+        .q-card { background:#000; padding:10px; border-radius:8px; margin:10px 0; border-left:4px solid var(--red); }
+
+        .card { background:var(--card); border-radius:20px; padding:25px; border:1px solid #1e293b; margin-bottom:20px; }
+        footer { text-align:center; padding:40px; border-top:1px solid #1e293b; margin-top:40px; }
+    </style>
+</head>
+<body onclick="closeSidebar()">
+
+    <nav>
+        <div onclick="openSidebar(event)" style="font-size:1.5rem; color:var(--accent);"><i class="fas fa-bars"></i></div>
+        <div style="font-weight:800; font-size:1.4rem;" onclick="showPage('home-page')">PRASIVO</div>
+        <div style="width:30px"></div>
+    </nav>
+
+    <div id="sidebar" onclick="event.stopPropagation()">
+        <a href="#" class="sidebar-link" onclick="showPage('home-page')">Home</a>
+        <a href="#" class="sidebar-link" onclick="showPage('bpharm-page')">B.Pharmacy</a>
+        <a href="#" class="sidebar-link" onclick="showPage('dpharm-page')">D.Pharmacy</a>
+        <a href="#" class="sidebar-link" onclick="showPage('gpat-page')">GPAT</a>
+        <a href="#" class="sidebar-link" onclick="showPage('cuet-page')">CUET-PG</a>
+        <a href="#" class="exam-btn" onclick="toggleExamMode()">EXAM TIME MODE 🚨</a>
+        <a href="#" class="sidebar-link" onclick="showPage('contact-page')">Contact</a>
+    </div>
+
+    <div id="home-page" class="page active">
+        <div class="card">
+            <h1>Welcome to <span style="color:var(--accent)">PRASIVO</span></h1>
+            <p style="margin-top:10px; opacity:0.7;">B.Pharm & D.Pharm ke liye India ka pehla Layered Learning System.</p>
+        </div>
+        <div class="card" onclick="showPage('bpharm-page')">
+            <h3>Start Studying</h3>
+            <p>Subject wise deep notes (Pass -> Power -> Elevation)</p>
+        </div>
+        <footer>
+            <p style="color:var(--accent); font-weight:800; font-size:1.2rem;">CEO & Founder - Prasoon Gupta</p>
+            <p style="opacity:0.4; font-size:0.7rem; margin-top:10px;">The Best Code | Licensed 2026</p>
+        </footer>
+    </div>
+
+    <div id="bpharm-page" class="page">
+        <h2>B.Pharmacy - Sem 1</h2>
+        <div class="card" style="margin-top:20px;" onclick="loadTopic('hap-unit1-cell')">
+            <h3>Human Anatomy & Physiology</h3>
+            <p style="opacity:0.6;">Unit 1: Introduction to Cell</p>
+        </div>
+    </div>
+
+    <div id="study-page" class="page">
+        <div class="tab-bar">
+            <div class="tab active" onclick="switchLayer('pass')">PASS</div>
+            <div class="tab" onclick="switchLayer('power')">POWER</div>
+            <div class="tab" onclick="switchLayer('elevation')">ELEVATION</div>
+        </div>
+        <div class="card">
+            <h2 id="topic-title">Topic Title</h2>
+            <div id="topic-body" style="margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <div id="exam-page" class="page">
+        <h1 style="color:var(--red)">LET'S TOP THE EXAM 🔥</h1>
+        <div id="exam-content"></div>
+    </div>
+
+    <div id="contact-page" class="page">
+        <div class="card">
+            <h2>Prasoon Gupta</h2>
+            <p>Email: itsprasoon2004@gmail.com</p>
+            <p>LinkedIn: Prasoon Gupta</p>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
