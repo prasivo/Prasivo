@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRASIVO | The Pharmacy Revolution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        :root { --primary: #6366f1; --accent: #22d3ee; --bg: #0b0f1a; --card: #161b22; --text: #f1f5f9; --red: #ef4444; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Plus Jakarta Sans',sans-serif; }
+        body { background:var(--bg); color:var(--text); line-height:1.7; }
+        
+        nav { position:fixed; top:0; width:100%; height:70px; background:rgba(11,15,26,0.95); backdrop-filter:blur(15px); display:flex; align-items:center; justify-content:space-between; padding:0 20px; z-index:2000; border-bottom:1px solid #1e293b; }
+        #sidebar { position:fixed; top:0; left:-320px; width:300px; height:100%; background:#0f172a; z-index:4000; transition:0.4s; padding-top:80px; box-shadow: 20px 0 50px rgba(0,0,0,0.5); }
+        #sidebar.active { left:0; }
+        .sidebar-link { display:flex; align-items:center; padding:18px 25px; color:#94a3b8; text-decoration:none; font-weight:600; border-bottom:1px solid #1e293b; cursor:pointer; }
+        .sidebar-link:hover { background:rgba(99,102,241,0.1); color:var(--accent); }
+
+        .page { display:none; padding:90px 20px 40px; min-height:100vh; max-width:900px; margin:0 auto; }
+        .page.active { display:block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(15px); } to { opacity:1; transform:translateY(0); } }
+
+        .card { background:var(--card); border-radius:24px; padding:35px; border:1px solid #1e293b; margin-bottom:25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        h1 { font-size:2.8rem; font-weight:800; margin-bottom:20px; line-height:1.2; }
+        h2 { color:var(--accent); margin-bottom:15px; }
+        h3 { margin-top:25px; margin-bottom:10px; color:var(--primary); }
+        
+        .back-btn { display:inline-flex; align-items:center; color:var(--accent); cursor:pointer; margin-bottom:20px; font-weight:700; gap:10px; }
+        
+        /* Contact Section */
+        .contact-item { display:flex; align-items:center; gap:15px; padding:20px; background:rgba(255,255,255,0.03); border-radius:15px; margin-bottom:15px; text-decoration:none; color:inherit; border:1px solid #334155; }
+        .contact-icon { font-size:1.5rem; color:var(--accent); }
+
+        footer { text-align:center; padding:50px; border-top:1px solid #1e293b; margin-top:50px; }
+    </style>
+</head>
+<body onclick="closeSidebar()">
+
+    <nav>
+        <div onclick="openSidebar(event)" style="font-size:1.6rem; color:var(--accent); cursor:pointer;"><i class="fas fa-bars-staggered"></i></div>
+        <div style="font-weight:800; font-size:1.6rem; letter-spacing:1px; cursor:pointer;" onclick="showPage('home-page')">PRASIVO</div>
+        <div style="width:30px"></div>
+    </nav>
+
+    <div id="sidebar" onclick="event.stopPropagation()">
+        <div class="sidebar-link" onclick="showPage('home-page')"><i class="fas fa-home"></i> &nbsp; Home</div>
+        <div class="sidebar-link" onclick="renderSyllabus('bpharm')"><i class="fas fa-graduation-cap"></i> &nbsp; B.Pharmacy</div>
+        <div class="sidebar-link" onclick="renderSyllabus('dpharm')"><i class="fas fa-book-medical"></i> &nbsp; D.Pharmacy</div>
+        <div class="sidebar-link" onclick="renderSyllabus('gpat')"><i class="fas fa-microscope"></i> &nbsp; GPAT</div>
+        <div class="sidebar-link" onclick="renderSyllabus('cuet')"><i class="fas fa-university"></i> &nbsp; CUET-PG</div>
+        <div class="sidebar-link" onclick="showPage('contact-page')"><i class="fas fa-address-card"></i> &nbsp; Contact Us</div>
+    </div>
+
+    <div id="home-page" class="page active">
+        <div class="card">
+            <h1>Welcome to <span style="color:var(--accent)">PRASIVO</span></h1>
+            <p>Pharmacy education ko dekhne ka nazariya badalne wala platform. Humne ise student ki un pareshaniyon ko dekh kar banaya hai jo 10 alag jagah dhoondte hain aur end me confuse ho jate hain.</p>
+        </div>
+
+        <div class="card">
+            <h2>What is PRASIVO?</h2>
+            <p>Prasivo ek system hai. Ye sirf notes nahi deta, balki aapko "Learning Layers" provide karta hai. Jab aapko pass hona ho toh <b>Pass Layer</b> padhein, jab deep janna ho toh <b>Power Layer</b>, aur jab topper banna ho toh <b>Elevation Layer</b>.</p>
+            <h3>Why PRASIVO is different?</h3>
+            <p>Baki platforms par sirf PDFs ki bheed hai. Prasivo par Logic hai. Hum batate hain ki Examiner kya soch raha hai aur marks kahan milte hain. Humara focus pure high-end content par hai.</p>
+            <h3>Student ka kya fayda hoga?</h3>
+            <p>Aapko kisi heavy hardware ki zaroorat nahi. Saara content optimized hai. Topic samajhne ke liye logical diagrams aur easy language (Hinglish) ka use kiya gaya hai taaki cheezein ratni na padein.</p>
+        </div>
+
+        <footer>
+            <p style="font-size:0.8rem; opacity:0.5;">CEO & FOUNDER</p>
+            <p style="color:var(--accent); font-weight:800; font-size:1.5rem;">Prasoon Gupta</p>
+            <p style="opacity:0.4; font-size:0.7rem; margin-top:10px;">The Best Code for Future Pharmacists | © 2026</p>
+        </footer>
+    </div>
+
+    <div id="selection-page" class="page">
+        <div id="dynamic-back" class="back-btn"><i class="fas fa-arrow-left"></i> Back</div>
+        <h2 id="selection-title">Select</h2>
+        <div id="selection-list"></div>
+    </div>
+
+    <div id="study-page" class="page">
+        <div id="study-back" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Topics</div>
+        <div class="card">
+            <h1 id="topic-title">Topic Title</h1>
+            <div id="topic-body"></div>
+        </div>
+    </div>
+
+    <div id="contact-page" class="page">
+        <div class="back-btn" onclick="showPage('home-page')"><i class="fas fa-arrow-left
