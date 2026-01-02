@@ -172,5 +172,18 @@ function trackProgress(course, topic) {
     }
 }
 
+window.openExamMode = () => {
+    const list = document.getElementById('selection-list');
+    const title = document.getElementById('selection-title');
+    
+    list.innerHTML = `
+        <div class="card" onclick="startCountdown('GPAT')"><h3>GPAT Countdown</h3></div>
+        <div class="card" onclick="alert('Important Topics Loading...')"><h3>High Weightage Topics</h3></div>
+    `;
+    title.innerText = "Exam Time Mode";
+    showPage('selection-page');
+};
+
+
 // Global listener for touch and load
 window.addEventListener('load', () => App.init());
